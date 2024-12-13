@@ -1,58 +1,73 @@
 package nathanthomp.datastructures;
 
-public class Stack<T> {
+import java.util.Iterator;
 
-    private class Node {
-        private T data;
-        private Node prev;
+public class Stack<T> implements Iterable<T> {
 
-        public Node(T data) {
-            this.data = data;
-            this.prev = null;
-        }
-    }
-
-    private Node tail; // a.k.a. top
+    private StackNode tail;
 
     public Stack() {
         this.tail = null;
     }
 
     public void push(T data) {
+        StackNode newNode = new StackNode(data);
+
         if (this.tail == null) {
-            this.tail = new Node(data);
+            this.tail = newNode;
         }
 
-        Node newNode = new Node(data);
         newNode.prev = this.tail;
-
         this.tail = newNode;
     }
 
     public T pop() {
         assert (this.tail == null);
-        Node previousTail = this.tail;
+        StackNode previousTail = this.tail;
         this.tail = previousTail.prev;
         return previousTail.data;
     }
 
-    public void print() {
-        if (this.tail == null) {
-            System.out.println("[]");
-            return;
+    @Override
+    public Iterator<T> iterator() {
+        return new StackIterator(this);
+    }
+
+    private class StackNode {
+        private T data;
+        private StackNode prev;
+
+        public StackNode(T data) {
+            this.data = data;
+            this.prev = null;
+        }
+    }
+
+    private class StackIterator implements Iterator<T> {
+
+        private StackNode currentNode;
+
+        public StackIterator(Stack<T> stack) {
+            this.currentNode = stack.tail;
         }
 
-        System.out.print("[ " + this.tail.data + ", ");
+        @Override
+        public boolean hasNext() {
+            return this.currentNode != null;
+        }
 
-        Node currentNode = this.tail;
-        while (currentNode.prev != null) {
-            currentNode = currentNode.prev;
-            System.out.print(currentNode.data);
-            if (currentNode.prev == null) {
-                System.out.print(" ");
-            } else {
-                System.out.print(", ");
-            }
+        @Override
+        public T next() {
+            StackNode nextNode = this.currentNode.prev;
+            this.currentNode = nextNode;
+            return nextNode.data;
+        }
+    }
+
+    public void print() {
+        System.out.print("[");
+        for (T data : this) {
+            System.out.print(", " + data + " ");
         }
         System.out.println("]");
     }
