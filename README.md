@@ -1,6 +1,6 @@
 # Data Structures and Algorithms
 
-Welcome to the Data Structures and Algorithms repository. In this repository, you will find the documentation and development of various data structures and a wide range of algorithms.
+Welcome to the Data Structures and Algorithms repository. In this repository, you will find the documentation and development of common data structures and various algorithms.
 
 ## Data Structures
 
@@ -21,3 +21,5 @@ Welcome to the Data Structures and Algorithms repository. In this repository, yo
 `public void push(T data)` Adds the data element at the top of the stack.
 
 `public T pop()` Removes and returns the data element at the top of the stack.
+
+## Algorithms
