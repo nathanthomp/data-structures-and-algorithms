@@ -1,6 +1,6 @@
 # Data Structures and Algorithms
 
-Welcome to the Data Structures and Algorithms repository. In this repository, you will find the documentation and development of common data structures and various algorithms.
+Welcome to the Data Structures and Algorithms repository. In this repository, you will find the documentation and development of common data structures and various algorithms. 
 
 ## Data Structures
 
